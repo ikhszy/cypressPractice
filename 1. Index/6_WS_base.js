@@ -38,14 +38,14 @@ describe('WS_Base', () => {
         limenu2.screenshot('wsbase_6')
         limenu2.should('contain', 'Dresses')
 
-        const ska = [
+        const skas = [
             'Casual Dresses',
             'Evening Dresses',
             'Summer Dresses'
           ]
 
         cy.get('#block_top_menu > ul > li:nth-child(1) > ul > li:nth-child(2) > ul > li').each((item, index, list) => {
-            cy.wrap(item).should('contain.text', ska[index]).screenshot('wsbase_5_' + [list]);
+            cy.wrap(item).should('contain.text', skas[index]).screenshot('wsbase_5_' + [list]);
         })
     })       
 

@@ -23,6 +23,17 @@ describe('WS_Base', () => {
         // 3rd on whether the dropdown menu visible
         const ulmenu = cy.get('#block_top_menu > ul > li:nth-child(2) > ul')
         ulmenu.should('be.visible')
+
+        // 4th on whether the dropmenu contains the right text
+        const dressarray = [
+            'Casual Dresses',
+            'Evening Dresses',
+            'Summer Dresses'
+        ]
+
+        cy.get('#block_top_menu > ul > li:nth-child(2) > ul > li').each((item, index, list) => {
+            cy.wrap(item).should('contain.text', dressarray[index]).screenshot('dsbase_2_' + [list])
+        })
     })
 
     it('Click on Casual dress button and check the redirection', () => {

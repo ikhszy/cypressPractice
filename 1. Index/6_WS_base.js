@@ -19,24 +19,35 @@ describe('WS_Base', () => {
         const limenu1 = cy.get('#block_top_menu > ul > li:nth-child(1) > ul > li:nth-child(1)')
         limenu1.screenshot('wsbase_4')
         limenu1.should('contain', 'Tops')
-        
-        const ulmenu1 = cy.get('#block_top_menu > ul > li:nth-child(1) > ul > li:nth-child(1) > ul')
-        ulmenu1.screenshot('wsbase_5')
-        ulmenu1.children()
-        .should('contain.text', 'T-shirts')
-        .and('contain.text', 'Blouses')
+
+        // Array of name to check text on list
+        const names = [
+            'T-shirts',
+            'Blouses'
+          ]
+          
+          // check the length of the list
+          cy.get('#block_top_menu > ul > li:nth-child(1) > ul > li:nth-child(1) > ul > li').each((item, index, list) => {
+          expect(list).to.have.length(2);
+  
+          // check if the list contains right text
+          cy.wrap(item).should('contain.text', names[index]).screenshot('wsbase_4_' + [list]);
+        })
 
         const limenu2 = cy.get('#block_top_menu > ul > li:nth-child(1) > ul > li:nth-child(2)')
         limenu2.screenshot('wsbase_6')
         limenu2.should('contain', 'Dresses')
-        
-        const ulmenu2 = cy.get('#block_top_menu > ul > li:nth-child(1) > ul > li:nth-child(2) > ul')
-        ulmenu2.screenshot('wsbase_7')
-        ulmenu2.children()
-        .should('contain.text', 'Casual Dresses')
-        .and('contain.text', 'Evening Dresses')
-        .and('contain.text', 'Summer Dresses')
-        })        
+
+        const ska = [
+            'Casual Dresses',
+            'Evening Dresses',
+            'Summer Dresses'
+          ]
+
+        cy.get('#block_top_menu > ul > li:nth-child(1) > ul > li:nth-child(2) > ul > li').each((item, index, list) => {
+            cy.wrap(item).should('contain.text', ska[index]).screenshot('wsbase_5_' + [list]);
+        })
+    })       
 
     it('Click on the tops button', () => {
         const wstops = cy.get('#block_top_menu > ul > li:nth-child(1) > a')

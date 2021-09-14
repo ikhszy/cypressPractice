@@ -24,13 +24,23 @@ describe('WS_Base', () => {
           // check if the list contains right image sources
         //   cy.wrap(item).find('img').should('have.attr', 'src').should('contains', banner[index])
 
+        const alink = cy.wrap(item).find('a').should(($alinks) => {
+            expect($alinks).to.have.attr('href').eq('http://www.prestashop.com/?utm_source=v16_homeslider')
+        })
+
           // check if the images contains the right name
           const img = cy.wrap(item, {timeout: 10000}).find('img').should(($images) => {
             expect($images).to.have.attr('src').contains(banner[index])
           })
 
           //check if the images using the right size
-          img.should('have.attr', 'width').should('eq', '779')
+          const height = cy.wrap(item).find('img').should(($imgheight) => {
+              expect($imgheight).to.have.attr('height').eq('448')
+          })
+          const width = cy.wrap(item).find('img').should(($imgwidth) => {
+            expect($imgwidth).to.have.attr('width').eq('779')
+        })
+
         })
     })
 })  

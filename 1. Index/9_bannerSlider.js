@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-describe('WS_Base', () => {
+describe('9_bannerSlider', () => {
     before(() => {
         cy.visit('http://automationpractice.com/index.php')
     })
@@ -40,7 +40,10 @@ describe('WS_Base', () => {
           const width = cy.wrap(item).find('img').should(($imgwidth) => {
             expect($imgwidth).to.have.attr('width').eq('779')
         })
-
         })
+    })
+
+    it('Should not change picture on hover', () => {
+        
     })
 })  
